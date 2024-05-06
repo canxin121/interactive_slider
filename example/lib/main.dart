@@ -36,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _controller = InteractiveSliderController(0.5);
-
+  final ValueNotifier<bool> _isDragging = ValueNotifier<bool>(false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,65 +78,75 @@ class _MyHomePageState extends State<MyHomePage> {
             onProgressUpdated: (value) {
               // This callback runs once when the user finishes updating the slider
             },
+            isDragging: _isDragging,
           ),
           const Divider(),
-          const InteractiveSlider(
-            startIcon: Icon(CupertinoIcons.volume_down),
-            endIcon: Icon(CupertinoIcons.volume_up),
+          InteractiveSlider(
+            startIcon: const Icon(CupertinoIcons.volume_down),
+            endIcon: const Icon(CupertinoIcons.volume_up),
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             iconPosition: IconPosition.below,
-            startIcon: Icon(CupertinoIcons.volume_down),
-            endIcon: Icon(CupertinoIcons.volume_up),
-            centerIcon: Text('Center'),
+            startIcon: const Icon(CupertinoIcons.volume_down),
+            endIcon: const Icon(CupertinoIcons.volume_up),
+            centerIcon: const Text('Center'),
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             iconPosition: IconPosition.inside,
-            startIcon: Icon(CupertinoIcons.volume_down),
-            endIcon: Icon(CupertinoIcons.volume_up),
-            centerIcon: Text('Center'),
+            startIcon: const Icon(CupertinoIcons.volume_down),
+            endIcon: const Icon(CupertinoIcons.volume_up),
+            centerIcon: const Text('Center'),
             unfocusedHeight: 40,
             focusedHeight: 50,
             iconGap: 16,
+            isDragging: ValueNotifier<bool>(false),
           ),
           const Divider(),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedHeight: 30,
             focusedHeight: 40,
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedHeight: 30,
             focusedHeight: 40,
-            shapeBorder: RoundedRectangleBorder(
+            shapeBorder: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedHeight: 30,
             focusedHeight: 40,
-            shapeBorder: BeveledRectangleBorder(
+            shapeBorder: const BeveledRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
+            isDragging: ValueNotifier<bool>(false),
           ),
           const Divider(),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedOpacity: 1,
             unfocusedHeight: 30,
             focusedHeight: 40,
             foregroundColor: Colors.deepPurple,
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedOpacity: 1,
             unfocusedHeight: 30,
             focusedHeight: 40,
-            gradient: LinearGradient(colors: [Colors.green, Colors.red]),
+            gradient: const LinearGradient(colors: [Colors.green, Colors.red]),
+            isDragging: ValueNotifier<bool>(false),
           ),
-          const InteractiveSlider(
+          InteractiveSlider(
             unfocusedOpacity: 1,
             unfocusedHeight: 30,
             focusedHeight: 40,
-            gradient: LinearGradient(colors: [Colors.green, Colors.red]),
+            gradient: const LinearGradient(colors: [Colors.green, Colors.red]),
             gradientSize: GradientSize.progressWidth,
+            isDragging: ValueNotifier<bool>(false),
           ),
         ],
       ),

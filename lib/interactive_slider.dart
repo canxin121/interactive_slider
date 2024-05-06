@@ -57,6 +57,7 @@ class InteractiveSlider extends StatefulWidget {
     this.startIconBuilder,
     this.centerIconBuilder,
     this.endIconBuilder,
+    required this.isDragging,
   })  : unfocusedOpacity = unfocusedOpacity ??
             (iconPosition == IconPosition.inside ? 1.0 : 0.4),
         assert(transitionCurvePeriod > 0.0),
@@ -166,6 +167,9 @@ class InteractiveSlider extends StatefulWidget {
   /// Widget builder to run when slider progress is updated
   final ValueWidgetBuilder<double>? endIconBuilder;
 
+  // 添加一个ValueNotifier来跟踪拖动状态
+  final ValueNotifier<bool> isDragging;
+
   @override
   State<InteractiveSlider> createState() => _InteractiveSliderState();
 }
@@ -230,6 +234,7 @@ class _InteractiveSliderState extends State<InteractiveSlider> {
     _height.dispose();
     _opacity.dispose();
     _progress.dispose();
+    widget.isDragging.dispose();
     super.dispose();
   }
 
@@ -342,12 +347,14 @@ class _InteractiveSliderState extends State<InteractiveSlider> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onHorizontalDragStart: (details) {
+        widget.isDragging.value = true;
         if (!mounted) return;
         _height.value = widget.focusedHeight;
         _opacity.value = 1.0;
         _margin.value = widget.focusedMargin;
       },
       onHorizontalDragEnd: (details) {
+        widget.isDragging.value = false;
         if (!mounted) return;
         _height.value = widget.unfocusedHeight;
         _opacity.value = widget.unfocusedOpacity;
